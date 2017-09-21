@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Multilingual Site</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.min.css">
+</head>
+<body>
+
+	<nav class="top-nav">
+		<div class="container">
+			<ul>
+			  <li class="top-nav-item"><a class="active" href="#">Item1</a></li>
+			  <li class="top-nav-item"><a href="#">Item2</a></li>
+			  <li class="top-nav-item"><a href="#">Item3</a></li>
+				<!-- <ul class="lang-selector">
+				  <li class="lang-item"><a class="active" href="#">en</a></li>
+				  <li class="lang-item"><a href="#">sv</a></li>
+				  <li class="lang-item"><a href="#">me</a></li>
+				</ul> -->
+        <ul class="lang-selector">
+        {% assign pages=site.pages | where:"ref", page.ref | sort: 'lang' %}
+        {% for page in pages %}
+          <li class="lang-item">
+            <a href="{{ page.url }}">{{ page.lang }}</a>
+          </li>
+        {% endfor %}
+        </ul>
+			</ul>
+		</div>
+	</nav>
+
+	{{ content }}
+
+
+
+</body>
+</html>
